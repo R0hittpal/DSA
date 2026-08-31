@@ -8,9 +8,6 @@ class Solution:
                 if nums[i]>nums[j]:
                     count+=1
             result.append(count)
-        j=0
-        for i in range(len(nums)):
-            nums[i]=result[j]
-            j+=1
-        return nums
+        
+        return result
         

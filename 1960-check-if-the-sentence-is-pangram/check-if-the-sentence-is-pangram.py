@@ -1,6 +1,6 @@
 class Solution:
     def checkIfPangram(self, sentence: str) -> bool:
-        map={}
+        seen=set()
         for i in sentence:
-            map[i]=map.get(i,0)+1
-        return len(map)==26
+            seen.add(i)
+        return len(seen)==26

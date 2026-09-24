@@ -5,18 +5,17 @@ class Solution:
         for i in range(len(nums)-2):
             if i>0 and nums[i] == nums[i-1]:
                 continue
-            x=nums[i]
             left=i+1
             right=(len(nums))-1
             while left<right:
-                total=x+nums[left]+nums[right]
+                total=nums[i]+nums[left]+nums[right]
                 
                 if total <0:
                     left+=1
                 elif total >0:
                     right-=1
                 elif total==0:
-                    list.append([x,nums[left],nums[right]])
+                    list.append([nums[i],nums[left],nums[right]])
                     left+=1
                     right-=1
                     while left<right and nums[left]== nums[left-1]:

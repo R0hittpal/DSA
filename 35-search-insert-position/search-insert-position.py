@@ -1,16 +1,15 @@
 class Solution:
     def searchInsert(self, nums: List[int], target: int) -> int:
-        min=float("-inf")
-        ind=0
-        for i in range(len(nums)):
-            if target in nums:
-                if nums[i]==target:
-                    return i
+        low=0
+        high=len(nums)-1
+        index=len(nums)
+        while low<=high:
+            mid=(high+low)//2
+            if nums[mid] >= target:
+                index=mid
+                high=mid-1
             else:
-                if nums[i] >min and nums[i]<target:
-                    min=nums[i]
-                    ind=(nums.index(min))+1
-        return ind
-
+                low=mid+1
+        return index
 
         

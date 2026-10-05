@@ -9,7 +9,7 @@ class Solution:
             'C': 100,
             'D': 500,
             'M': 1000
-        }
+        }  
 
         total = 0
 

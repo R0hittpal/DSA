@@ -1,14 +1,17 @@
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        max_len=0
-        for i  in range(len(s)):
-            hashi={}
-            for j in range(i,len(s)):
-                if hashi.get(s[j], 0) == 1:
-                    break
+        left=0
+        seen=set()
+        n=len(s)
+        maxi=0
+        for i in range(n):
+            while s[i] in seen:
+                seen.remove(s[left])
+                left+=1
+            seen.add(s[i])
+            length=i-left+1
+            maxi=max(maxi,length)
+        return maxi
 
-                length=j-i+1
-                max_len=max(length,max_len)
-                hashi[s[j]]=1
-        return max_len
-        
+
+       

@@ -7,11 +7,11 @@ class Solution:
         for right in range(len(nums)):
             if nums[right] == 0:
                 zeros += 1
-
-            while zeros > k:
-                if nums[left] == 0:
-                    zeros -= 1
-                left += 1
+            if zeros >k:
+                if nums[left]==0:
+                    zeros-=1
+                left+=1
+        
 
             max_len = max(max_len, right - left + 1)
 

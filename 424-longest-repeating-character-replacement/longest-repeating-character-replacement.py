@@ -8,7 +8,7 @@ class Solution:
         while r<len(s):
             freq[s[r]]=freq.get(s[r],0)+1
             max_f=max(max_f,freq[s[r]])
-            while (r - l + 1) - max_f>k:
+            if (r - l + 1) - max_f>k:
                 freq[s[l]]-=1
                 
                 l+=1

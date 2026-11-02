@@ -1,48 +1,41 @@
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
-        n = len(s)
-        m = len(t)
-
-        if m > n:
+        if len(t) > len(s):
             return ""
 
-        hash_map = [0] * 256
+        hash_map = {}
 
         for ch in t:
-            hash_map[ord(ch)] += 1
+            hash_map[ch] = hash_map.get(ch, 0) + 1
 
         left = 0
-        right = 0
         cnt = 0
-
         minLen = float('inf')
-        sIndex = -1
+        start = 0
 
-        while right < n:
+        for right in range(len(s)):
 
-            # Expand window
-            if hash_map[ord(s[right])] > 0:
-                cnt += 1
+            if s[right] in hash_map:
+                hash_map[s[right]] -= 1
 
-            hash_map[ord(s[right])] -= 1
+                if hash_map[s[right]] >= 0:
+                    cnt += 1
 
-            # Shrink window
-            while cnt == m:
+            while cnt == len(t):
 
                 if right - left + 1 < minLen:
                     minLen = right - left + 1
-                    sIndex = left
+                    start = left
 
-                hash_map[ord(s[left])] += 1
+                if s[left] in hash_map:
+                    hash_map[s[left]] += 1
 
-                if hash_map[ord(s[left])] > 0:
-                    cnt -= 1
+                    if hash_map[s[left]] > 0:
+                        cnt -= 1
 
                 left += 1
 
-            right += 1
-
-        if sIndex == -1:
+        if minLen == float('inf'):
             return ""
 
-        return s[sIndex:sIndex + minLen]
+        return s[start:start + minLen]

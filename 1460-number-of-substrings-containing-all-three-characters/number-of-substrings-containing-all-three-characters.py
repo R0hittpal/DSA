@@ -1,20 +1,18 @@
 class Solution:
     def numberOfSubstrings(self, s: str) -> int:
-        count = [0, 0, 0]
-        left = 0
-        result = 0
         n = len(s)
+        left = 0
+        dictt = {}
+        count = 0
 
         for right in range(n):
-            count[ord(s[right]) - ord('a')] += 1
+            ch = s[right]
+            dictt[ch] = dictt.get(ch, 0) + 1
 
-            while count[0] > 0 and count[1] > 0 and count[2] > 0:
-                result += n - right
+            while dictt.get('a', 0) > 0 and dictt.get('b', 0) > 0 and dictt.get('c', 0) > 0:
+                count += n - right
 
-                count[ord(s[left]) - ord('a')] -= 1
+                dictt[s[left]] -= 1
                 left += 1
 
-        return result
-
-
-        
+        return count

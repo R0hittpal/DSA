@@ -1,10 +1,22 @@
 class Solution:
-    def majorityElement(self, nums: List[int]) -> int:
-        dict={}
-        a=len(nums)
-        for i in range(len(nums)):
-            dict[nums[i]]=dict.get(nums[i],0)+1
-        for key in dict:
-            if dict[key] > a / 2:
-                return key
-       
+    def majorityElement(self, nums: list[int]) -> int:
+        count=1
+        ele=nums[0]
+        for i in nums:
+            if i==ele:
+                count+=1
+            elif i!=ele:
+                count-=1
+            if count==0:
+                ele =i
+                count=1
+        count1=0
+        for i in nums:
+            if ele==i:
+                count1+=1
+        if count1> len(nums)//2:
+            return ele
+        else:
+            return -1
+
+        

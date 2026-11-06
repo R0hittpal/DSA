@@ -5,40 +5,35 @@ class Solution:
         """
         m=len(matrix)
         n=len(matrix[0])
-        f_row=False
-        f_col=False
-
-        for i in range(n):
-            if matrix[0][i]==0:
-                f_row=True
-                break 
-        for j in range(m):
-            if matrix[j][0]==0:
-                f_col=True
+        first_row=False
+        first_col=False
+        for row in range(m):
+            if matrix[row][0]==0:
+                first_col=True
                 break
+        for col in range(n):
+            if matrix[0][col]==0:
+                first_row=True
+                break
+        for row in range(1,m):
+            for col in range(1,n):
+                if matrix[row][col]==0:
+                    matrix[row][0]=0
+                    matrix[0][col]=0
 
-        for i in range(1,m):
-            for j in range(1,n):
-                if matrix[i][j]==0:
-                    matrix[i][0]=0
-                    matrix[0][j]=0
-        for i in range(1,m):
-            for j in range(1,n):
-                if matrix[i][0]==0 or matrix[0][j]==0 :
-                    matrix[i][j]=0
-        
-        if f_row ==True:
-        
+
+        for row in range(1,m):
+            for col in range(1,n):
+                if matrix[row][0]==0 or matrix[0][col]==0:
+                    matrix[row][col]=0
+
+        if first_row:
             for i in range(n):
-            
                 matrix[0][i]=0
-        if f_col == True:    
-            for j in range(m):
-            
-                matrix[j][0]=0
+        if first_col:
+            for i in range(m):
+                matrix[i][0]=0
+        
+
 
         
-    
-
-
-

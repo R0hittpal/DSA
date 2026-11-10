@@ -17,5 +17,3 @@ class Solution:
                 nums[i],nums[index]=nums[index],nums[i]
                 break
         nums[index+1:n]=reversed(nums[index+1:n])
-
-

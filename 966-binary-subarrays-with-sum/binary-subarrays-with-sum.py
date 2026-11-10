@@ -9,7 +9,7 @@ class Solution:
         sumi=0
         while right<n:
             sumi+=nums[right]
-            while left<=right and sumi>goal:
+            while  sumi>goal:
                 sumi-=nums[left]
                 left+=1
             count+=right-left+1

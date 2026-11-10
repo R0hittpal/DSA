@@ -10,12 +10,8 @@ class Solution:
                 count+=1
             else:
                 count-=1
-        count1=0
-        for i in nums:
-            if i == ele:
-                count1+=1
-        n=len(nums)
-        if count1>n/2:
-            return ele  
+       
+       
+        return ele  
 
         

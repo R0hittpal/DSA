@@ -5,11 +5,18 @@ class Solution:
 
         count = 0
         j = 0
+        i=0
+        maxi=0
 
-        for i in range(len(start)):
+        while i<len(start):
             if start[i] <= end[j]:
                 count += 1
+                i+=1
             else:
+                count-=1
                 j += 1
+            maxi=max(maxi,count)
 
-        return count
+
+
+        return maxi

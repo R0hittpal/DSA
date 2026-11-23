@@ -5,7 +5,6 @@ class Solution:
             if sumi == target:
                 ans.append(path.copy())
                 return
-
             if index == len(arr) or sumi > target:
                 return
             path.append(arr[index])

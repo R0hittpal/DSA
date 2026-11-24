@@ -1,18 +1,31 @@
 class Solution:
     def combinationSum(self, candidates: list[int], target: int) -> list[list[int]]:
-        ans=[]
-        def fun(arr,path,index,sumi):
-            if sumi == target:
-                ans.append(path.copy())
+        answer=[]
+        current=[]
+        def backtrack(index, remaining_target):
+            if remaining_target==0:
+                answer.append(current.copy())
                 return
-            if index == len(arr) or sumi > target:
+            if index == len(candidates):
                 return
-            path.append(arr[index])
-            fun(arr,path,index,sumi+arr[index])
-            path.pop()
-            fun(arr,path,index+1,sumi)
-        fun(candidates,[],0,0)
-        return ans
-
-
-        
+            # If current candidate can fit into remaining target, pick it.
+            if candidates[index] <= remaining_target:
+                current.append(candidates[index])
+ 
+                # Stay at same index because the same candidate can be reused.
+                backtrack(index, remaining_target - candidates[index])
+ 
+                # Remove last picked element before trying another possibility.
+                current.pop()
+            else:
+                # If candidate is greater than remaining target, it cannot be picked.
+                pass
+ 
+            # Skip current candidate and move to the next index.
+            backtrack(index + 1, remaining_target)
+ 
+        # Start exploring combinations from index 0.
+        backtrack(0, target)
+ 
+        return answer
+ 
